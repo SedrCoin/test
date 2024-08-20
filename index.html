@@ -33,12 +33,13 @@
     </style>
 </head>
 <body>
-    <button id="vibrateButton">Vibrate</button>
+    <button id="vibrateButton">Vibrate!!!!</button>
 
     <script>
         // Telegram Web App API
         const tg = window.Telegram.WebApp;
-        tg.expand();  
+
+        tg.expand();
         // Обработчик нажатия на кнопку
         document.getElementById('vibrateButton').addEventListener('click', () => {
             if (tg.HapticFeedback) {
