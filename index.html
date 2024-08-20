@@ -24,6 +24,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:active {
@@ -35,24 +36,23 @@
     <button id="vibrateButton">Vibrate</button>
 
     <script>
-        // Получаем доступ к API Telegram Web App
+        // Telegram Web App API
         const tg = window.Telegram.WebApp;
 
-        // Функция, вызывающая вибрацию
-        function triggerVibration() {
-            if (navigator.vibrate) {
-                navigator.vibrate(200); // Вибрация длительностью 200 мс
-            } else {
-                console.log("Vibration API is not supported by this device.");
-            }
-        }
-
-        // Обработчик события нажатия на кнопку
+        // Обработчик нажатия на кнопку
         document.getElementById('vibrateButton').addEventListener('click', () => {
-            triggerVibration();
+            if (tg.HapticFeedback) {
+                // Использование HapticFeedback API от Telegram
+                tg.HapticFeedback.impactOccurred('medium');
+            } else if (navigator.vibrate) {
+                // Вибрация через стандартный Vibrate API
+                navigator.vibrate(200);
+            } else {
+                console.log("Vibration or HapticFeedback API is not supported.");
+            }
         });
 
-        // Настройки Web App при загрузке
+        // Настройка Web App
         tg.ready();
     </script>
 </body>
