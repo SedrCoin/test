@@ -38,7 +38,7 @@
     <script>
         // Telegram Web App API
         const tg = window.Telegram.WebApp;
-
+        tg.expand();  
         // Обработчик нажатия на кнопку
         document.getElementById('vibrateButton').addEventListener('click', () => {
             if (tg.HapticFeedback) {
